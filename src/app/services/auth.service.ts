@@ -30,6 +30,10 @@ export class AuthService {
     return this._http.post(this.url + 'auth/resetpass', { email });
   }
 
+  updatepass(token: string, password: string): Observable<any>{
+    return this._http.put(this.url + 'auth/updatepass', { token, password });
+  }
+
   setToken(token: string){
     this.cookie.set("token-transfer", token);
   }

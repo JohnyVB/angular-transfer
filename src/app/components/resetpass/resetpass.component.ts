@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -13,16 +13,25 @@ export class ResetpassComponent implements OnInit {
   public email: any;
   public emailErr: boolean;
   public emailOk: boolean;
+  public passErr: boolean;
+  public pass1: string;
+  public pass2: string;
+  public spinner: boolean;
+  public success: boolean;
 
   constructor(
     private _route: ActivatedRoute,
-    private _router: Router,
     private _authService: AuthService
   ) { 
     this.token = null;
     this.email = null;
     this.emailErr = false;
     this.emailOk = false;
+    this.passErr = false
+    this.pass1 = '';
+    this.pass2 = '';
+    this.spinner = false;
+    this.success = false;
   }
 
   ngOnInit(): void {
@@ -33,12 +42,12 @@ export class ResetpassComponent implements OnInit {
     this._route.params.subscribe(
       res => {
         this.token = res.token;
-        console.log(this.token);
       }
     );
   }
 
   sendEmail(){
+    this.spinner = true;
     this._authService.resetpass(this.email).subscribe(
       res => {
         this.emailOk = true;
@@ -46,8 +55,29 @@ export class ResetpassComponent implements OnInit {
       },
       err => {
         this.emailErr = true;
+        this.spinner = false;
       }
     )
+  }
+
+  sendPass(){
+    if (this.pass1 === this.pass2) {
+      this.spinner = true;
+      this._authService.updatepass(this.token, this.pass2).subscribe(
+        res => {
+          this.passErr = false;
+          this.spinner = false;
+          this.success = true;
+        },
+        err => {
+          this.passErr = true;
+          this.spinner = false;
+          this.success = false;
+        }
+      )
+    }else{
+      this.passErr = true;
+    }
   }
 
 }
