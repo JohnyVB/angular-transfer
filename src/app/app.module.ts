@@ -1,16 +1,38 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
+import { LoginUserComponent } from './components/login-user/login-user.component';
+import { LoginAtmComponent } from './components/login-atm/login-atm.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ErrorComponent } from './components/error/error.component';
+import { DashboarduserComponent } from './components/dashboarduser/dashboarduser.component';
+import { DashboardatmComponent } from './components/dashboardatm/dashboardatm.component';
+import { ResetpassComponent } from './components/resetpass/resetpass.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginUserComponent,
+    LoginAtmComponent,
+    HeaderComponent,
+    FooterComponent,
+    RegisterComponent,
+    ErrorComponent,
+    DashboarduserComponent,
+    DashboardatmComponent,
+    ResetpassComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

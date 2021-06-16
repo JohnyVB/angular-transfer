@@ -1,0 +1,39 @@
+<section id="bgLoginUser">
+  <div class="container">
+
+    <div class="modalTem row">
+      <div class="row col-8 bg-white rounded p-0 justify-content-center">
+
+        <p class="text-center mb-3 mt-5">Login User</p>
+        <div class="col-8">
+          <p *ngIf="this.loginErr" class="bg-danger text-white text-center rounded p-1">Datos invalidos</p>
+          <div class="input-group my-3">
+            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
+            <input type="email" [(ngModel)]="this.dataLogin.email" #email="ngModel" class="form-control"
+              placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+          </div>
+        </div>
+
+        <div class="col-8">
+          <div class="input-group my-3">
+            <span class="input-group-text" id="basic-addon1"><i class="bi bi-key-fill"></i></span>
+            <input type="password" [(ngModel)]="this.dataLogin.password" #password="ngModel" class="form-control"
+              placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+          </div>
+        </div>
+
+        <div class="col-12 text-center">
+          <button type="button" (click)="loginUser()" class="btn btn-primary my-3">Login</button>
+          <p class="my-1"><a class="links float-end mx-5" [routerLink]="['/loginatm']">Login ATM >>></a></p>
+        </div>
+
+        <div class="col-12 text-center border-top mt-3 py-3">
+          <p class="my-1"><a class="links" [routerLink]="['/register']">¿Aún no se ha registrado?</a></p>
+          <p class="my-1"><a class="links" [routerLink]="['/reset']">¿Olvidó la password?</a></p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>

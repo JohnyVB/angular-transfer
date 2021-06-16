@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+
+body {
+  
+}
+
+#bgLoginUser{
+  background-image: url('./assets/images/user.jpg');
+}
+
+#bgLoginAtm{
+  background-image: url('./assets/images/atm.jpg');
+}
+
+#bgReset{
+  background-image: url('./assets/images/reset.png');
+}
+
+.container {
+  min-height: 800px;
+}
+
+.modalTem{
+    min-height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.links{
+    cursor: pointer;
+}
+
+#imageIcon{
+    width: 5%;
+}

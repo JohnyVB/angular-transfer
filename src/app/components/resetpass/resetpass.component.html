@@ -1,0 +1,39 @@
+<section id="bgReset">
+  <div class="container">
+    <div class="modalTem row">
+
+      <div *ngIf="!this.token" class="row col-6 bg-white rounded p-0 justify-content-center p-4">
+
+        <p class="m-2">Para recuperar su contraseña por favor ingrese el correo electronico con el cual este registrado.</p>
+        <p *ngIf="this.emailErr" class="bg-danger text-white text-center rounded p-1">Correo invalido</p>
+        <div *ngIf="!this.emailOk" class="input-group p-0 my-3">
+          <span class="input-group-text" id="basic-addon1">@</span>
+          <input type="email" [(ngModel)]="this.email" class="form-control" placeholder="Email" aria-label="Email"
+            aria-describedby="basic-addon1" pattern="email">
+        </div>
+        <p *ngIf="this.emailOk" class="bg-success text-white text-center rounded p-1">El correo ha sido enviado con exito</p>
+        <button *ngIf="!this.emailOk" type="button" (click)="sendEmail()" class="btn btn-success my-3">Enviar</button>
+
+      </div>
+
+      <div *ngIf="this.token" class="row col-6 bg-white rounded p-0 justify-content-center p-4">
+
+        <div class="input-group p-0 my-3">
+          <span class="input-group-text" id="basic-addon1"><i class="bi bi-key-fill"></i></span>
+          <input type="password" class="form-control" placeholder="Nueva password" aria-label="Pass" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group p-0 my-3">
+            <span class="input-group-text" id="basic-addon1"><i class="bi bi-key-fill"></i></span>
+            <input type="password" class="form-control" placeholder="Confirmar password" aria-label="Passc" aria-describedby="basic-addon1">
+        </div>
+
+        <button type="button" class="btn btn-success my-3">Enviar</button>
+
+      </div>
+
+      
+
+    </div>
+  </div>
+</section>
