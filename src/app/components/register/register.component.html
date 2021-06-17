@@ -1,1 +1,87 @@
-<p>register works!</p>
+<app-header></app-header>
+<section id="bgReset">
+    <div class="container">
+        <div class="modalTem row">
+            <form class="row col-9 bg-white rounded p-0 justify-content-center p-4 g-3">
+                <h3 class="mb-3">Registro</h3>
+
+
+                <div class="col-6 my-2">
+                    <label for="firstname" class="form-label">Nombres</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Nombres" id="firstname"
+                            aria-describedby="basic-addon3" required>
+                    </div>
+                </div>
+
+                <div class="col-6 my-2">
+                    <label for="lastname" class="form-label">Apellidos</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Apellidos" id="validationDefault03"
+                            aria-describedby="basic-addon3" required>
+                    </div>
+                </div>
+
+                <div class="col-6 my-2">
+                    <label for="typeDocument" class="form-label">Tipo de cedula</label>
+                    <div class="input-group mb-3">
+                        <select class="form-select" id="typeDocument" required>
+                            <option selected>Elija...</option>
+                            <option value="1">Cedula de ciudadania</option>
+                            <option value="2">Cedula de extranjeria</option>
+                            <option value="3">Pasaporte</option>
+                        </select>
+                        <label class="input-group-text" for="typeDocument">Opciones</label>
+                    </div>
+                </div>
+
+                <div class="col-6 my-2">
+                    <label for="document" class="form-label">Numero de documento</label>
+                    <div class="input-group mb-3">
+                        <input type="number" class="form-control" placeholder="Numero de documento" id="document"
+                            aria-describedby="basic-addon3" required>
+                    </div>
+                </div>
+
+                <div class="col-12 my-2">
+                    <label for="expeditionDate" class="form-label">Fecha de expedición</label>
+                    <div class="input-group mb-3">
+                        <input type="date" class="form-control" placeholder="Fecha de expedición" id="expeditionDate"
+                            aria-describedby="basic-addon3" required>
+                    </div>
+                </div>
+
+
+                <div class="col-6 my-2">
+                    <label for="email" class="form-label">Correo electronico</label>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Correo electronico" id="email"
+                            aria-describedby="basic-addon3" required>
+                    </div>
+                </div>
+
+                <div class="col-6 my-2">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" placeholder="Contraseña" id="password"
+                            aria-describedby="basic-addon3" required>
+                    </div>
+                </div>
+
+                <div class="col-6 my-2">
+                    <div class="input-group mb-3">
+                        <button type="submit" class="btn btn-success">Crear</button>
+                    </div>
+                </div>
+
+                <div class="col-6 my-2">
+                    <div class="input-group mb-3 justify-content-end">
+                        <a class="links btn btn-danger">Volver</a>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+</section>
