@@ -9,7 +9,7 @@ import { CookieService } from "ngx-cookie-service";
 })
 export class AuthService {
 
-  public url: string;
+  private url: string;
 
   constructor(
     private _http: HttpClient,

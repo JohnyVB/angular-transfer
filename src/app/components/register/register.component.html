@@ -2,86 +2,176 @@
 <section id="bgReset">
     <div class="container">
         <div class="modalTem row">
-            <form class="row col-9 bg-white rounded p-0 justify-content-center p-4 g-3">
-                <h3 class="mb-3">Registro</h3>
 
+            <form [formGroup]="this.registerForm" novalidate (ngSubmit)="createUser()" class="row col-9 bg-white rounded p-0 justify-content-center p-4 g-3">
 
-                <div class="col-6 my-2">
-                    <label for="firstname" class="form-label">Nombres</label>
+                <h3 class="my-1">Registro</h3>
+                <div class="col-6 my-1">
+                    <label for="firstName" class="form-label">Nombres</label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Nombres" id="firstname"
-                            aria-describedby="basic-addon3" required>
+                        <input type="text" class="form-control" formControlName="firstName" placeholder="Nombres" id="firstName"
+                            aria-describedby="basic-addon3" >
+                    </div>
+                    <div *ngIf="registerForm.get('firstName')?.errors && this.registerForm.get('firstName')?.errors && this.registerForm.get('firstName')?.dirty && this.registerForm.get('firstName')?.touched">
+                        <span *ngIf="this.registerForm.get('firstName')?.hasError('required')" class="text-danger">Campo requerido</span>
                     </div>
                 </div>
 
-                <div class="col-6 my-2">
-                    <label for="lastname" class="form-label">Apellidos</label>
+                <div class="col-6 my-1">
+                    <label for="lastName" class="form-label">Apelli dos</label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Apellidos" id="validationDefault03"
-                            aria-describedby="basic-addon3" required>
+                        <input type="text" class="form-control" formControlName="lastName" placeholder="Apellidos" id="lastName"
+                            aria-describedby="basic-addon3" >
+                    </div>
+                    <div *ngIf="registerForm.get('lastName')?.errors && this.registerForm.get('lastName')?.errors && this.registerForm.get('lastName')?.dirty && this.registerForm.get('lastName')?.touched">
+                        <span *ngIf="this.registerForm.get('lastName')?.hasError('required')" class="text-danger">Campo requerido</span>
                     </div>
                 </div>
 
-                <div class="col-6 my-2">
+                <div class="col-6 my-1">
                     <label for="typeDocument" class="form-label">Tipo de cedula</label>
                     <div class="input-group mb-3">
-                        <select class="form-select" id="typeDocument" required>
-                            <option selected>Elija...</option>
-                            <option value="1">Cedula de ciudadania</option>
-                            <option value="2">Cedula de extranjeria</option>
-                            <option value="3">Pasaporte</option>
-                        </select>
                         <label class="input-group-text" for="typeDocument">Opciones</label>
+                        <select class="form-select" formControlName="typeDocument" id="typeDocument" >
+                            <option value="" disabled>Elija...</option>
+                            <option value="Cedula de ciudadania">Cedula de ciudadania</option>
+                            <option value="Cedula de extranjeria">Cedula de extranjeria</option>
+                            <option value="Pasaporte">Pasaporte</option>
+                        </select>
+                    </div>
+                    <div *ngIf="registerForm.get('typeDocument')?.errors && this.registerForm.get('typeDocument')?.errors && this.registerForm.get('typeDocument')?.dirty && this.registerForm.get('typeDocument')?.touched">
+                        <span *ngIf="this.registerForm.get('typeDocument')?.hasError('required')" class="text-danger">Campo requerido</span>
                     </div>
                 </div>
 
-                <div class="col-6 my-2">
+                <div class="col-6 my-1">
                     <label for="document" class="form-label">Numero de documento</label>
                     <div class="input-group mb-3">
-                        <input type="number" class="form-control" placeholder="Numero de documento" id="document"
-                            aria-describedby="basic-addon3" required>
+                        <span class="input-group-text" id="document"><i class="bi bi-sort-numeric-down"></i></span>
+                        <input type="number" class="form-control" formControlName="document" placeholder="Numero de documento" id="document"
+                            aria-describedby="basic-addon3" >
+                    </div>
+                    <div *ngIf="registerForm.get('document')?.errors && this.registerForm.get('document')?.errors && this.registerForm.get('document')?.dirty && this.registerForm.get('document')?.touched">
+                        <span *ngIf="this.registerForm.get('document')?.hasError('required')" class="text-danger">Campo requerido</span>
                     </div>
                 </div>
 
-                <div class="col-12 my-2">
+                <div class="col-12 my-1">
+                    <label for="dateBirth" class="form-label">Fecha de nacimiento</label>
+                    <div class="input-group mb-3">
+                        <input type="date" class="form-control" formControlName="dateBirth" id="dateBirth" aria-describedby="basic-addon3" >
+                    </div>
+                    <div *ngIf="registerForm.get('dateBirth')?.errors && this.registerForm.get('dateBirth')?.errors && this.registerForm.get('dateBirth')?.dirty && this.registerForm.get('dateBirth')?.touched">
+                        <span *ngIf="this.registerForm.get('dateBirth')?.hasError('required')" class="text-danger">Campo requerido</span>
+                    </div>
+                </div>
+
+
+                <div class="col-6 my-1">
+                    <label for="countryBirth" class="form-label">Pais de nacimiento</label>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="countryBirth">Opciones</label>
+                        <select class="form-select" (change)="getCity()" formControlName="countryBirth" id="countryBirth" >
+                            <option value="" disabled>Pais</option>
+                            <option [value]="item['name']" *ngFor="let item of this.countries">{{item['name']}}</option>
+                        </select>
+                    </div>
+                    <div *ngIf="registerForm.get('countryBirth')?.errors && this.registerForm.get('countryBirth')?.errors && this.registerForm.get('placeBirth')?.dirty && this.registerForm.get('countryBirth')?.touched">
+                        <span *ngIf="this.registerForm.get('countryBirth')?.hasError('required')" class="text-danger">Campo requerido</span>
+                    </div>
+                </div>
+
+                <div class="col-6 my-1">
+                    <label for="cityBirth" class="form-label">Ciudad de nacimiento</label>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="cityBirth">Opciones</label>
+                        <select class="form-select" formControlName="cityBirth" id="cityBirth" >
+                            <option value="" disabled>Ciudad</option>
+                            <option [value]="item['name']" *ngFor="let item of this.cities">{{item['name']}}</option>
+                        </select>
+                    </div>
+                    <div *ngIf="registerForm.get('cityBirth')?.errors && this.registerForm.get('cityBirth')?.errors && this.registerForm.get('cityBirth')?.dirty && this.registerForm.get('cityBirth')?.touched">
+                        <span *ngIf="this.registerForm.get('cityBirth')?.hasError('required')" class="text-danger">Campo requerido</span>
+                    </div>
+                </div>
+
+
+                <div class="col-6 my-1">
                     <label for="expeditionDate" class="form-label">Fecha de expedición</label>
                     <div class="input-group mb-3">
-                        <input type="date" class="form-control" placeholder="Fecha de expedición" id="expeditionDate"
-                            aria-describedby="basic-addon3" required>
+                        <input type="date" class="form-control" formControlName="expeditionDate" id="expeditionDate" aria-describedby="basic-addon3" >
+                    </div>
+                    <div *ngIf="registerForm.get('expeditionDate')?.errors && this.registerForm.get('expeditionDate')?.errors && this.registerForm.get('expeditionDate')?.dirty && this.registerForm.get('expeditionDate')?.touched">
+                        <span *ngIf="this.registerForm.get('expeditionDate')?.hasError('required')" class="text-danger">Campo requerido</span>
+                    </div>
+                </div>
+
+                <div class="col-6 my-1">
+                    <label for="gender" class="form-label">Sexo</label>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="gender">Opciones</label>
+                        <select class="form-select" formControlName="gender" id="gender" >
+                            <option value="" disabled>Elija...</option>
+                            <option value="Femenino">Femenino</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                    <div *ngIf="registerForm.get('gender')?.errors && this.registerForm.get('gender')?.errors && this.registerForm.get('gender')?.dirty && this.registerForm.get('gender')?.touched">
+                        <span *ngIf="this.registerForm.get('gender')?.hasError('required')" class="text-danger">Campo requerido</span>
                     </div>
                 </div>
 
 
-                <div class="col-6 my-2">
+                <div class="col-6 my-1">
                     <label for="email" class="form-label">Correo electronico</label>
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Correo electronico" id="email"
-                            aria-describedby="basic-addon3" required>
+                        <span class="input-group-text" id="email">@</span>
+                        <input type="email" class="form-control" formControlName="email" placeholder="Correo electronico" id="email"
+                            aria-describedby="basic-addon3" >
+                    </div>
+                    <div *ngIf="registerForm.get('email')?.errors && this.registerForm.get('email')?.errors && this.registerForm.get('email')?.dirty && this.registerForm.get('email')?.touched">
+                        <span *ngIf="this.registerForm.get('email')?.hasError('required')" class="text-danger">Campo requerido</span>
+                        <span *ngIf="this.registerForm.get('email')?.hasError('email')" class="text-danger">Debe ser un email valido</span>
                     </div>
                 </div>
 
-                <div class="col-6 my-2">
+                <div class="col-6 my-1">
                     <label for="password" class="form-label">Contraseña</label>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Contraseña" id="password"
-                            aria-describedby="basic-addon3" required>
+                        <span class="input-group-text" id="password"><i class="bi bi-key-fill"></i></span>
+                        <input type="password" class="form-control" formControlName="password" placeholder="Contraseña" id="password"
+                            aria-describedby="basic-addon3" >
+                    </div>
+                    <div *ngIf="registerForm.get('password')?.errors && this.registerForm.get('password')?.errors && this.registerForm.get('password')?.dirty && this.registerForm.get('password')?.touched">
+                        <span *ngIf="this.registerForm.get('password')?.hasError('required')" class="text-danger">Campo requerido</span>
+                        <span *ngIf="this.registerForm.get('password')?.hasError('minLength')" class="text-danger">Debe de ser minimo 6 caracteres</span>
                     </div>
                 </div>
 
-                <div class="col-6 my-2">
-                    <div class="input-group mb-3">
-                        <button type="submit" class="btn btn-success">Crear</button>
+                <div class="row justify-content-between" *ngIf="this.stateCreate === 0 || this.stateCreate === 1">
+
+            
+                    <button type="submit" [disabled]="this.registerForm.invalid || this.stateCreate === 1" class="col-3 btn btn-success">Crear</button>
+          
+    
+                    <div *ngIf="this.stateCreate === 1" class="col-3 spinner-border text-info" style="width: 3rem; height: 3rem;" role="status">
+                        <span class="visually-hidden">Loading...</span>
                     </div>
+    
+                 
+                    <button [routerLink]="['/home']" class="col-3 btn btn-danger">Volver</button>
+         
+
                 </div>
 
-                <div class="col-6 my-2">
-                    <div class="input-group mb-3 justify-content-end">
-                        <a class="links btn btn-danger">Volver</a>
-                    </div>
+                <div class="col-12 text-center" *ngIf="this.stateCreate === 2">
+                    <p class="p-3 bg-success text-white">Se ha creado correctamente el usuario</p>
+                    <button class="btn btn-success" [routerLink]="['/home']">Inicio</button>
                 </div>
-
 
             </form>
+
         </div>
     </div>
 </section>
