@@ -38,7 +38,6 @@ export class UserService {
       country: country
     }
 
-    console.log('value: ', country);
     return this._http.post(`https://countriesnow.space/api/v0.1/countries/population/cities/filter`, body);
   }
 

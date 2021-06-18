@@ -13,8 +13,14 @@
   background-image: url('./assets/images/reset.png');
 }
 
+footer{
+  background-color: #282C34;
+  color: white;
+  height: 50px;
+}
+
 .container {
-  min-height: 800px;
+  min-height: 1000px;
 }
 
 .modalTem{

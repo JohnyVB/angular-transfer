@@ -14,6 +14,8 @@ export class RegisterComponent implements OnInit {
   public countries: [];
   public cities: [];
   public stateCreate: number;
+  public emailErr: any;
+  public documentErr: any;
 
   constructor(
     private fb: FormBuilder,
@@ -36,6 +38,8 @@ export class RegisterComponent implements OnInit {
     this.countries = [];
     this.cities = [];
     this.stateCreate = 0; // 0: deshabilitado, 1: habilitado, 2: transaccion Ok
+    this.emailErr = null;
+    this.documentErr = null;
   }
 
   ngOnInit(): void {
@@ -44,18 +48,27 @@ export class RegisterComponent implements OnInit {
 
   createUser(){
     this.stateCreate = 1;
+    this.emailErr = document.querySelector('#emailErr');
+    this.documentErr = document.querySelector('#documentErr');
     this._userService.createUser(this.registerForm.value).subscribe(
       res => {
         this.registerForm.reset();
-        this.registerForm.disable;
         this.stateCreate = 2;
+        this.documentErr.innerHTML = "";
+        this.emailErr.innerHTML = "";
       },
-      err => {
-        console.log('Error al crear usuario: ', err);
+      ({error}) => {
+        error.errors.forEach((element: any) => {
+          if (element.param === "document") {
+            this.documentErr.innerHTML = element.msg;
+          }else if (element.param === "email") {
+            this.emailErr.innerHTML = element.msg;
+          }
+          console.log('Error al crear usuario: ', element);
+        });
         this.stateCreate = 0;
       }
     );
-    
   }
 
   getCountries(){
