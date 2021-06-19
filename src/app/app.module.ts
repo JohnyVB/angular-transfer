@@ -14,6 +14,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { DashboarduserComponent } from './components/dashboarduser/dashboarduser.component';
 import { DashboardatmComponent } from './components/dashboardatm/dashboardatm.component';
 import { ResetpassComponent } from './components/resetpass/resetpass.component';
+import { ActivateuserComponent } from './components/activateuser/activateuser.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ResetpassComponent } from './components/resetpass/resetpass.component';
     ErrorComponent,
     DashboarduserComponent,
     DashboardatmComponent,
-    ResetpassComponent
+    ResetpassComponent,
+    ActivateuserComponent
   ],
   imports: [
     BrowserModule,

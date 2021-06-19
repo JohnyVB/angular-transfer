@@ -7,6 +7,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { DashboarduserComponent } from './components/dashboarduser/dashboarduser.component';
 import { DashboardatmComponent } from './components/dashboardatm/dashboardatm.component';
 import { ResetpassComponent } from './components/resetpass/resetpass.component';
+import { ActivateuserComponent } from './components/activateuser/activateuser.component';
 import { ErrorComponent } from './components/error/error.component';
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'dashboardatm', component: DashboardatmComponent },
   { path: 'reset', component: ResetpassComponent },
   { path: 'reset/:token', component: ResetpassComponent },
+  { path: 'activation/:token', component: ActivateuserComponent },
   { path: '**', component: ErrorComponent }
 ];
 
