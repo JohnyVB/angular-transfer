@@ -12,26 +12,26 @@ export class ResetpassComponent implements OnInit {
   public token: any;
   public email: any;
   public emailErr: boolean;
-  public emailOk: boolean;
+  public spinner: boolean;
+  public sent: boolean;
+
   public passErr: boolean;
   public pass1: string;
   public pass2: string;
-  public spinner: boolean;
-  public success: boolean;
 
   constructor(
     private _route: ActivatedRoute,
     private _authService: AuthService
   ) { 
     this.token = null;
-    this.email = null;
     this.emailErr = false;
-    this.emailOk = false;
+    this.email = null;
+    this.spinner = false;
+    this.sent = false;
+
     this.passErr = false
     this.pass1 = '';
     this.pass2 = '';
-    this.spinner = false;
-    this.success = false;
   }
 
   ngOnInit(): void {
@@ -50,8 +50,9 @@ export class ResetpassComponent implements OnInit {
     this.spinner = true;
     this._authService.resetpass(this.email).subscribe(
       res => {
-        this.emailOk = true;
         this.emailErr = false;
+        this.sent = true;
+        this.spinner = false;
       },
       err => {
         this.emailErr = true;
@@ -65,14 +66,14 @@ export class ResetpassComponent implements OnInit {
       this.spinner = true;
       this._authService.updatepass(this.token, this.pass2).subscribe(
         res => {
+          this.sent = true;
           this.passErr = false;
           this.spinner = false;
-          this.success = true;
         },
         err => {
+          this.sent = false;
           this.passErr = true;
           this.spinner = false;
-          this.success = false;
         }
       )
     }else{

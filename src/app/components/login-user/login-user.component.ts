@@ -12,6 +12,7 @@ export class LoginUserComponent implements OnInit {
 
   public dataLogin: any;
   public loginErr: boolean;
+  public loading: boolean;
 
   constructor(
     private _authService: AuthService,
@@ -23,12 +24,14 @@ export class LoginUserComponent implements OnInit {
     };
 
     this.loginErr = false;
+    this.loading = false;
   }
 
   ngOnInit(): void {
   }
 
   loginUser(){
+    this.loading = true;
     this._authService.loginUser(this.dataLogin).subscribe(
       res => {
         this._authService.setToken(res.token);
@@ -37,6 +40,7 @@ export class LoginUserComponent implements OnInit {
       },
       err => {
         this.loginErr = true;
+        this.loading = false;
       }
     );
   }

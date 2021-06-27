@@ -12,6 +12,7 @@ export class LoginAtmComponent implements OnInit {
 
   public dataLogin: any;
   public loginErr: boolean;
+  public loading: boolean;
 
   constructor(
     private _authService: AuthService,
@@ -22,12 +23,14 @@ export class LoginAtmComponent implements OnInit {
       password: ''
     };
     this.loginErr = false;
+    this.loading = false;
   }
 
   ngOnInit(): void {
   }
 
   loginAtm(){
+    this.loading = true
     this._authService.loginAtm(this.dataLogin).subscribe(
       res => {
         this._authService.setToken(res.token);
@@ -36,6 +39,7 @@ export class LoginAtmComponent implements OnInit {
       },
       err => {
         this.loginErr = true;
+        this.loading = false;
       }
     );
   }

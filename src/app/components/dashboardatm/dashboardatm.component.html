@@ -1,19 +1,41 @@
-<app-header></app-header>
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand links" data-bs-toggle="offcanvas" data-bs-target="#menuCanvas"
+            aria-controls="menuCanvas">
+            <img id="imageIcon" src="../../../assets/images/transfer.png" alt="image icon"
+                class="d-inline-block align-text-top">
+            <label class="m-2">Transferencias y Giros</label>
+        </a>
+    </div>
+</nav>
 <section id="bgAtm">
-    <div class="container">
-        <p>dashboardatm works!</p>
+    <div class="container row">
+        <div id="user" class="col-4 bg-light text-dark rounded m-3">
 
+            <div id="searcForm">
+                <label for="search" class="form-label">Busqueda</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="search" aria-describedby="basic-addon3">
+                </div>
+            </div>
 
-        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
-            aria-controls="offcanvasExample">
-            Button with data-bs-target
-        </button>
+            <div id="dataUser">
+                <p>firsName</p>
+                <p>lastname</p>
+            </div>
+
+        </div>
+
+        <div id="dataTransaction" class="col-4 bg-light text-dark rounded m-3">
+            
+        </div>
+
     </div>
 </section>
 
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+<div class="offcanvas offcanvas-start" tabindex="-1" id="menuCanvas" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menu</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">

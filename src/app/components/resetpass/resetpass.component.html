@@ -1,67 +1,150 @@
-<app-header></app-header>
-<section id="bgReset">
-  <div class="container">
-    <div class="modalTem row">
+<div class="container position-sticky z-index-sticky top-0">
+  <div class="row">
+    <div class="col-12">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg  blur blur-rounded top-0  z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+        <div class="container-fluid">
+          <a [routerLink]="['/home']" class="links navbar-brand font-weight-bolder ms-lg-0 ms-3">
+            AngularTransfer
+          </a>
 
-      <div *ngIf="!this.token" class="row col-6 bg-white rounded p-0 justify-content-center p-4">
-
-        <p class="m-2">Para recuperar su contraseña por favor ingrese el correo electronico con el cual este registrado.
-        </p>
-        <p *ngIf="this.emailErr" class="bg-danger text-white text-center rounded p-1">Correo invalido</p>
-        <div *ngIf="!this.emailOk" class="input-group p-0 my-3">
-          <span class="input-group-text" id="basic-addon1">@</span>
-          <input type="email" [(ngModel)]="this.email" class="form-control" placeholder="Email" aria-label="Email"
-            aria-describedby="basic-addon1" pattern="email">
-        </div>
-        <p *ngIf="this.emailOk" class="bg-success text-white text-center rounded p-1">El correo ha sido enviado con
-          exito</p>
-        <button *ngIf="!this.emailOk" type="button" (click)="sendEmail()" class="btn btn-success my-3">
-          <span *ngIf="!this.spinner" id="enviar">Enviar</span>
-          <div *ngIf="this.spinner" id="spinner" class="spinner-border text-light" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-        </button>
-
-        <a class="links my-1" [routerLink]="['/home']"><<< Volver</a>
-      </div>
-      <div *ngIf="this.token" class="row col-6 bg-white rounded p-0 justify-content-center p-4">
-
-        <div *ngIf="!this.success" class="row">
-
-          <p *ngIf="this.passErr" class="bg-danger text-white text-center rounded p-1">Las contraseñas no coinciden
-          </p>
-          <div class="input-group p-0 my-3">
-            <span class="input-group-text" id="basic-addon1"><i class="bi bi-key-fill"></i></span>
-            <input type="password" [(ngModel)]="this.pass1" class="form-control" placeholder="Nueva password"
-              aria-label="Pass" aria-describedby="basic-addon1">
-          </div>
-
-          <div class="input-group p-0 my-3">
-            <span class="input-group-text" id="basic-addon1"><i class="bi bi-key-fill"></i></span>
-            <input type="password" [(ngModel)]="this.pass2" class="form-control" placeholder="Confirmar password"
-              aria-label="Passc" aria-describedby="basic-addon1">
-          </div>
-
-          <button type="button" (click)="sendPass()" class="btn btn-success my-3">
-            <span *ngIf="!this.spinner" id="enviar">Guardar</span>
-            <div *ngIf="this.spinner" id="spinner" class="spinner-border text-light" role="status">
-              <span class="visually-hidden">Loading...</span>
-            </div>
-          </button>
-
-        </div>
-
-        <div *ngIf="this.success" class="row">
-          <p class="bg-success text-white text-center rounded p-2 my-3">Se ha actualizado la contraseña con exito</p>
-        </div>
-
-
-
-
-        <a class="links my-1" [routerLink]="['/home']"> <<< Inicio</a>
-      </div>
-
+          <a [routerLink]="['/home']" class="btn btn-sm btn-round mb-0 me-1 bg-gradient-dark">
+            Portal usuarios
+          </a>
       
+          <a [routerLink]="['/loginatm']" class="btn btn-sm btn-round mb-0 me-1 bg-gradient-dark">
+            Portal ATM
+          </a>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+    </div>
+  </div>
+</div>
+<section>
+  <div class="page-header section-height-75">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
+          <div class="card card-plain mt-8">
+            <div class="card-header pb-0 text-left bg-transparent">
+              <h3 class="font-weight-bolder text-info text-gradient">Recuperar password</h3>
+            </div>
+
+
+            <div *ngIf="!this.token" class="card-body">
+              <p class="m-2">
+                Ingrese el correo electronico con el cual este registrado.
+              </p>
+              <p *ngIf="this.emailErr" class="mb-0 text-danger">Correo invalido</p>
+
+
+              <form *ngIf="!this.sent" role="form text-left">
+
+                <label>Email</label>
+                <div class="mb-3">
+                  <input type="email" [(ngModel)]="this.email" name="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+                </div>
+                
+                <div class="text-center">
+                  <button  type="button" (click)="sendEmail()" class="btn bg-gradient-info w-100 mt-4 mb-0">
+                    <div *ngIf="!this.spinner">
+                      Enviar correo
+                    </div>
+                    <div *ngIf="this.spinner" class="spinner-border text-light" style="width: 1rem; height: 1rem;" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </button>
+                </div>
+
+              </form>
+
+              <div *ngIf="this.sent" role="form text-left">         
+                <div class="p-2 bg-gradient-info rounded text-white text-center">
+                  <p class="mb-0">Correo enviado con exito.</p>
+                  <p class="mb-0">Por favor revise su correo</p>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div *ngIf="this.token" class="card-body">
+
+
+              <form *ngIf="!this.sent" role="form text-left">
+
+                <p *ngIf="this.passErr" class="my-1 text-danger">Correo invalido</p>
+
+                <label>Nueva contraseña</label>
+                <div class="mb-3">
+                  <input type="password" [(ngModel)]="this.pass1" name="pass1" class="form-control" placeholder="Nueva contraseña" aria-label="password" aria-describedby="password-addon">
+                </div>
+
+                <label>Confirmar contraseña</label>
+                <div class="mb-3">
+                  <input type="password" [(ngModel)]="this.pass2" name="pass2" class="form-control" placeholder="Confirmar contraseña" aria-label="password" aria-describedby="password-addon">
+                </div>
+                
+                <div class="text-center">
+                  <button  type="button" (click)="sendPass()" class="btn bg-gradient-info w-100 mt-4 mb-0">
+                    <div *ngIf="!this.spinner">
+                      Guardar contraseña
+                    </div>
+                    <div *ngIf="this.spinner" class="spinner-border text-light" style="width: 1rem; height: 1rem;" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </button>
+                </div>
+
+              </form>
+
+              <div *ngIf="this.sent" role="form text-left">         
+                <div class="p-2 bg-gradient-info rounded text-white text-center">
+                  <p class="mb-0">Se ha gurdado la nueva contraseña con exito</p>
+                </div>
+
+              </div>
+
+
+            </div>
+
+            
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="oblique position-absolute top-0 h-100 d-md-block d-none me-n8">
+            <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style="background-image:url('../assets/img/curved-images/reset.jpg')"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+<!-- -------- START FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
+<footer class="footer py-4 fixed-bottom">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mb-4 mx-auto text-center">
+        <a href="#" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+          Company
+        </a>
+        <a href="#" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+          About Us
+        </a>
+        <a href="#" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+          Team
+        </a>
+        <a href="#" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+          Products
+        </a>
+        <a href="#" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+          Blog
+        </a>
+        <a href="#" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+          Pricing
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

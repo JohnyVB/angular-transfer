@@ -1,40 +1,104 @@
-<app-header></app-header>
-<section id="bgUser">
-  <div class="container">
-
-    <div class="modalTem row">
-      <div class="row col-8 bg-white rounded p-0 justify-content-center">
-
-        <p class="text-center mb-3 mt-5">Login User</p>
-        <div class="col-8">
-          <p *ngIf="this.loginErr" class="bg-danger text-white text-center rounded p-1">Datos invalidos</p>
-          <div class="input-group my-3">
-            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
-            <input type="email" [(ngModel)]="this.dataLogin.email" #email="ngModel" class="form-control"
-              placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+<div class="container position-sticky z-index-sticky top-0">
+  <div class="row">
+    <div class="col-12">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg  blur blur-rounded top-0  z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+        <div class="container-fluid">
+          <a [routerLink]="['/home']" class="links navbar-brand font-weight-bolder ms-lg-0 ms-3">
+            AngularTransfer
+          </a>
+      
+          <a [routerLink]="['/loginatm']" class="btn btn-sm btn-round mb-0 me-1 bg-gradient-dark">
+            Portal ATM
+          </a>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+    </div>
+  </div>
+</div>
+<section>
+  <div class="page-header section-height-75">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
+          <div class="card card-plain mt-8">
+            <div class="card-header pb-0 text-left bg-transparent">
+              <h3 class="font-weight-bolder text-info text-gradient">Portal de usuarios</h3>
+            </div>
+            <div class="card-body">
+              <p *ngIf="this.loginErr" class="mb-0 text-danger">Datos incorrectos</p>
+              <form role="form text-left">
+                <label>Email</label>
+                <div class="mb-3">
+                  <input type="email" name="email" [(ngModel)]="this.dataLogin.email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+                </div>
+                <label>Password</label>
+                <div class="mb-3">
+                  <input type="password" name="email" [(ngModel)]="this.dataLogin.password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="rememberMe" checked="">
+                  <label class="form-check-label" for="rememberMe">Recordar mis datos</label>
+                </div>
+                <div class="text-center">
+                  <button [disabled]="this.loading" type="button" (click)="loginUser()" class="btn bg-gradient-info w-100 mt-4 mb-0">
+                    <div *ngIf="!this.loading">
+                      Sign in
+                    </div>
+                    <div *ngIf="this.loading" class="spinner-border text-light" style="width: 1rem; height: 1rem;" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div class="card-footer text-center pt-0 px-lg-2 px-1">
+              <p class="mb-2 text-sm mx-auto">
+                ¿No tienes cuenta?
+                <a [routerLink]="['/register']" class="links text-info text-gradient font-weight-bold">Registrarse</a>
+              </p>
+              <p class="mb-4 text-sm mx-auto">
+                ¿Olvido su password?
+                <a [routerLink]="['/reset']" class="links text-info text-gradient font-weight-bold">Recuperar</a>
+              </p>
+            </div>
           </div>
         </div>
-
-        <div class="col-8">
-          <div class="input-group my-3">
-            <span class="input-group-text" id="basic-addon1"><i class="bi bi-key-fill"></i></span>
-            <input type="password" [(ngModel)]="this.dataLogin.password" #password="ngModel" class="form-control"
-              placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+        <div class="col-md-6">
+          <div class="oblique position-absolute top-0 h-100 d-md-block d-none me-n8">
+            <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style="background-image:url('../assets/img/curved-images/curved6.jpg')"></div>
           </div>
         </div>
-
-        <div class="col-12 text-center">
-          <button type="button" (click)="loginUser()" class="btn btn-primary my-3">Login</button>
-          <p class="my-1"><a class="links float-end mx-5" [routerLink]="['/loginatm']">Login ATM >>></a></p>
-        </div>
-
-        <div class="col-12 text-center border-top mt-3 py-3">
-          <p class="my-1"><a class="links" [routerLink]="['/register']">¿Aún no se ha registrado?</a></p>
-          <p class="my-1"><a class="links" [routerLink]="['/reset']">¿Olvidó la password?</a></p>
-        </div>
-
       </div>
     </div>
-
   </div>
 </section>
+<!-- -------- START FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
+<footer class="footer py-4 fixed-bottom">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mb-4 mx-auto text-center">
+        <a href="#" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+          Company
+        </a>
+        <a href="#" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+          About Us
+        </a>
+        <a href="#" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+          Team
+        </a>
+        <a href="#" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+          Products
+        </a>
+        <a href="#" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+          Blog
+        </a>
+        <a href="#" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+          Pricing
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
