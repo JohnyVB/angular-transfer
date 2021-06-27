@@ -42,6 +42,30 @@ export class AuthService {
     this.cookie.set("token-transfer", token);
   }
 
+  setCredentialsUSER(data: {}){
+    this.cookie.set('dataTransferUSER', JSON.stringify(data));
+  }
+
+  getCredentialsUSER(){
+    return this.cookie.get('dataTransferUSER');
+  }
+
+  deleteCredentialsUSER(){
+    this.cookie.delete('dataTransferUSER');
+  }
+
+  setCredentialsATM(data: {}){
+    this.cookie.set('dataTransferATM', JSON.stringify(data));
+  }
+
+  getCredentialsATM(){
+    return this.cookie.get('dataTransferATM');
+  }
+
+  deleteCredentialsATM(){
+    this.cookie.delete('dataTransferATM');
+  }
+
   getToken(){
     return this.cookie.get("token-transfer");
   }

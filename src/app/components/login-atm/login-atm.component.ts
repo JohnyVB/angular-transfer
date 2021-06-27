@@ -13,6 +13,8 @@ export class LoginAtmComponent implements OnInit {
   public dataLogin: any;
   public loginErr: boolean;
   public loading: boolean;
+  public rememberMe: any;
+  public credentials: any;
 
   constructor(
     private _authService: AuthService,
@@ -24,9 +26,21 @@ export class LoginAtmComponent implements OnInit {
     };
     this.loginErr = false;
     this.loading = false;
+    this.rememberMe = (this._authService.getCredentialsATM()) ? true : false;
+    this.credentials = null;
   }
 
   ngOnInit(): void {
+    this.getDataTransfer();
+  }
+
+  getDataTransfer(){
+    this.credentials = this._authService.getCredentialsATM();
+        
+    if (this.credentials) {
+      this.dataLogin.document = JSON.parse(this.credentials).document;
+      this.dataLogin.password = JSON.parse(this.credentials).password;
+    }
   }
 
   loginAtm(){
@@ -34,8 +48,12 @@ export class LoginAtmComponent implements OnInit {
     this._authService.loginAtm(this.dataLogin).subscribe(
       res => {
         this._authService.setToken(res.token);
-        this._router.navigate(['/dashboardatm']);
-        console.log('Respuesta: ', res); 
+        if (this.rememberMe && !this.credentials) {
+          this._authService.setCredentialsATM(this.dataLogin);
+        }else if (!this.rememberMe) {
+          this._authService.deleteCredentialsATM();
+        }
+        this._router.navigate(['/dashboardatm']); 
       },
       err => {
         this.loginErr = true;

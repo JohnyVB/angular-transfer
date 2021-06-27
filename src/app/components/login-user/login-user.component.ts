@@ -13,6 +13,8 @@ export class LoginUserComponent implements OnInit {
   public dataLogin: any;
   public loginErr: boolean;
   public loading: boolean;
+  public rememberMe: any;
+  public credentials: any;
 
   constructor(
     private _authService: AuthService,
@@ -25,9 +27,21 @@ export class LoginUserComponent implements OnInit {
 
     this.loginErr = false;
     this.loading = false;
+    this.rememberMe = (this._authService.getCredentialsUSER()) ? true : false;
+    this.credentials = null;
   }
 
   ngOnInit(): void {
+    this.getDataTransfer();
+  }
+
+  getDataTransfer(){
+    this.credentials = this._authService.getCredentialsUSER();
+
+    if (this.credentials) {
+      this.dataLogin.email = JSON.parse(this.credentials).email;
+      this.dataLogin.password = JSON.parse(this.credentials).password;
+    }
   }
 
   loginUser(){
@@ -35,8 +49,12 @@ export class LoginUserComponent implements OnInit {
     this._authService.loginUser(this.dataLogin).subscribe(
       res => {
         this._authService.setToken(res.token);
+        if (this.rememberMe && !this.credentials) {
+          this._authService.setCredentialsUSER(this.dataLogin);
+        }else if (!this.rememberMe) {
+          this._authService.deleteCredentialsUSER();
+        }
         this._router.navigate(['/dashboarduser']);
-        console.log('Respuesta: ', res); 
       },
       err => {
         this.loginErr = true;
