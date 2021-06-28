@@ -1,19 +1,66 @@
-<app-header></app-header>
-<section id="bgReset">
-  <div class="container">
-    <div class="modalTem row">
-
-      <div class="row col-6 bg-white rounded p-0 text-center p-4 justify-content-center">
-
-        <div *ngIf="this.activationOk === 0" class="col-12 my-3 spinner-border text-info" style="width: 3rem; height: 3rem;" role="status">
-          <span class="visually-hidden">Loading...</span>
+<div class="container position-sticky z-index-sticky top-0">
+  <div class="row">
+    <div class="col-12">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg  blur blur-rounded top-0  z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+        <div class="container-fluid">
+          <a [routerLink]="['/home']" class="links navbar-brand font-weight-bolder ms-lg-0 ms-3">
+            AngularTransfer
+          </a>
+      
+          <a [routerLink]="['/home']" class="btn btn-sm btn-round mb-0 me-1 bg-gradient-dark">
+            Home
+          </a>
         </div>
+      </nav>
+      <!-- End Navbar -->
+    </div>
+  </div>
+</div>
+<section>
+  <div class="page-header section-height-75">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
+          <div class="card card-plain mt-8">
+            <div class="card-header pb-0 text-left bg-transparent text-center">
+              <h3 class="font-weight-bolder text-info text-gradient">Activación de cuenta</h3>
+            </div>
 
-        <p *ngIf="this.activationOk === 1" class="m-2 p-4 bg-success text-white rounded">Su cuenta ha sido activada correctamente</p>
-        <p *ngIf="this.activationOk === 2" class="m-2 p-4 bg-danger text-white rounded">Error en activar la cuenta</p>
+            <div class="card-body text-center">
 
-        <a class="links my-1" [routerLink]="['/home']"><<< Login</a>
-      </div>      
+              <div *ngIf="this.activationOk === 0" class="col-12 my-3 spinner-border text-info"
+                style="width: 3rem; height: 3rem;" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+  
+              <p *ngIf="this.activationOk === 1" class="m-2 p-4 bg-success text-white rounded">Su cuenta ha sido activada
+                correctamente</p>
+              <p *ngIf="this.activationOk === 2" class="m-2 p-4 bg-danger text-white rounded">Error en activar la cuenta
+              </p>
+  
+            </div>
+
+            <div class="card-footer text-center pt-0 px-lg-2 px-1">
+              <p class="mb-2 text-sm mx-auto">
+                ¿No tienes cuenta?
+                <a [routerLink]="['/register']" class="links text-info text-gradient font-weight-bold">Registrarse</a>
+              </p>
+              <p class="mb-4 text-sm mx-auto">
+                ¿Olvido su password?
+                <a [routerLink]="['/reset']" class="links text-info text-gradient font-weight-bold">Recuperar</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="oblique position-absolute top-0 h-100 d-md-block d-none me-n8">
+            <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style="background-image:url('../assets/img/curved-images/curved14.jpg')"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+<app-footer></app-footer>
+

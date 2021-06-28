@@ -32,7 +32,8 @@ export class RegisterComponent implements OnInit {
       expeditionDate: ["", [Validators.required]],
       gender: ["", [Validators.required]],
       email: ["", [Validators.required, Validators.email]],
-      password: ["", [Validators.required, Validators.minLength(6)]]
+      password: ["", [Validators.required, Validators.minLength(6)]],
+      checkTerms: [false, [Validators.requiredTrue]]
     });
 
     this.countries = [];
@@ -47,9 +48,12 @@ export class RegisterComponent implements OnInit {
   }
 
   createUser(){
+    console.log(delete this.registerForm.value.checkTerms);
+    
     this.stateCreate = 1;
     this.emailErr = document.querySelector('#emailErr');
     this.documentErr = document.querySelector('#documentErr');
+    delete this.registerForm.value.checkTerms;
     this._userService.createUser(this.registerForm.value).subscribe(
       res => {
         this.registerForm.reset();
