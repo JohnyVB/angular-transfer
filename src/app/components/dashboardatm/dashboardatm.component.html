@@ -1,58 +1,9 @@
-<nav class="navbar navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand links" data-bs-toggle="offcanvas" data-bs-target="#menuCanvas"
-            aria-controls="menuCanvas">
-            <img id="imageIcon" src="../../../assets/images/transfer.png" alt="image icon"
-                class="d-inline-block align-text-top">
-            <label class="m-2">Transferencias y Giros</label>
-        </a>
-    </div>
-</nav>
-<section id="bgAtm">
-    <div class="container row">
-        <div id="user" class="col-4 bg-light text-dark rounded m-3">
+<app-aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-left ms-3"
+  id="sidenav-main"></app-aside>
 
-            <div id="searcForm">
-                <label for="search" class="form-label">Busqueda</label>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="search" aria-describedby="basic-addon3">
-                </div>
-            </div>
-
-            <div id="dataUser">
-                <p>firsName</p>
-                <p>lastname</p>
-            </div>
-
-        </div>
-
-        <div id="dataTransaction" class="col-4 bg-light text-dark rounded m-3">
-            
-        </div>
-
-    </div>
-</section>
-
-<div class="offcanvas offcanvas-start" tabindex="-1" id="menuCanvas" aria-labelledby="offcanvasExampleLabel">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menu</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-        <div>
-            Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists,
-            etc.
-        </div>
-        <div class="dropdown mt-3">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                data-bs-toggle="dropdown">
-                Dropdown button
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
+<main class="main-content mt-1 border-radius-lg">
+  <app-header class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
+  navbar-scroll="true"></app-header>
+  <router-outlet></router-outlet>
+</main>
+<app-footer></app-footer>

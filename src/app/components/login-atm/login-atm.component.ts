@@ -47,13 +47,16 @@ export class LoginAtmComponent implements OnInit {
     this.loading = true
     this._authService.loginAtm(this.dataLogin).subscribe(
       res => {
+
         this._authService.setToken(res.token);
+        this._authService.user = res.user;
+        
         if (this.rememberMe && !this.credentials) {
           this._authService.setCredentialsATM(this.dataLogin);
         }else if (!this.rememberMe) {
           this._authService.deleteCredentialsATM();
         }
-        this._router.navigate(['/dashboardatm']); 
+        this._router.navigate(['/dashboardatm/' + res.token]); 
       },
       err => {
         this.loginErr = true;

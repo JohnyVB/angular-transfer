@@ -54,7 +54,7 @@ export class LoginUserComponent implements OnInit {
         }else if (!this.rememberMe) {
           this._authService.deleteCredentialsUSER();
         }
-        this._router.navigate(['/dashboarduser']);
+        this._router.navigate(['/dashboarduser/' + res.token]);
       },
       err => {
         this.loginErr = true;
